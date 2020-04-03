@@ -1,64 +1,68 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 
+/**
+ * Represents a book of recipes, handles all recipes and keeps track of
+ * which ingredients exist in recipes.
+ * @version 1.0
+ * @author Andreas Månsson
+ */
 public class RecipeBook {
 
+    private ArrayList<Recipe> recipes;
+    private ArrayList<String> ingredients = new ArrayList<String>();
 
-    private ArrayList<Recipe> recipes = new ArrayList<Recipe>();
-
-    public RecipeBook(int count) {
-        populateRecpies(count);
+    public RecipeBook() {
+        importRecipes();
+        listRecipes();
+        checkIngredients();
     }
 
-    public void populateRecpies(int count) {
-
-        for(int i = 0; i<count; i++) {
-            recipes.add(randomRecipe());
-        }
+    /**
+     * Imports all recipes using the RecipeReader-class.
+     * Stores them in the recipes-variable.
+     */
+    public void importRecipes() {
+        RecipeReader rr = new RecipeReader();
+        recipes = rr.readAllRecipes();
     }
 
-    public Recipe randomRecipe() {
-        String name = randomName().toString();
-        Random rand = new Random();
-        Recipe res = new Recipe(name);
-        res.addIngredients(randomIngredients(rand.nextInt(3) + 2));
+    /**
+     * Checks the ingredients of all recipes in the recipes-variable, then adds
+     * them to the ingredients-variable. Filters out duplicates.
+     */
+    public void checkIngredients() {
 
-        return res;
-    }
+        for(int i = 0; i<recipes.size(); i++) {
 
-    public ArrayList<Ingredients> randomIngredients(int count) {
-        List<Ingredients> list = Arrays.asList(Ingredients.values());
-        ArrayList<Ingredients> res = new ArrayList<Ingredients>();
-        Random rand = new Random();
-        int lastIngredient = -1;
-        for(int i = 0; i<count; i++) {
-            int newIngredient = rand.nextInt(list.size());
+            ArrayList<String> currentRecipeIngredients = recipes.get(i).getIngredients();
 
-            while(newIngredient == lastIngredient) {
-                newIngredient = rand.nextInt(list.size());
+            for(int j = 0; j<currentRecipeIngredients.size(); j++) {
+                int count = 0;
+                for(int b = 0; b<ingredients.size(); b++) {
+                    if(currentRecipeIngredients.get(j).equals(ingredients.get(b))) {
+                        count++;
+                    }
+                }
+
+                if(count == 0) {
+                    ingredients.add(currentRecipeIngredients.get(j));
+                }
             }
-
-            res.add(list.get(newIngredient));
-            lastIngredient = newIngredient;
         }
-        return res;
+
+        /* Test
+        for(int i = 0; i<ingredients.size(); i++) {
+            System.out.println(ingredients.get(i));
+        }*/
     }
 
-    public StringBuffer randomName() {
-        String letters = "abcdefgijklmnopqrstuvwxyz";
-        Random rand = new Random();
-        StringBuffer res = new StringBuffer();
-
-        for(int i = 0; i<rand.nextInt(10) + 1; i++) {
-            res.append(letters.charAt(rand.nextInt(25)));
+    public void listRecipes() {
+        for(int i = 0; i<recipes.size(); i++) {
+            System.out.println(recipes.get(i).toString());
         }
-        return res;
     }
 
-
-    public void filter(ArrayList<Ingredients> list) {
+    /*public void filter(ArrayList<Ingredients> list) {
         ArrayList<Recipe> filtered = new ArrayList<Recipe>();
 
         for(int i = 0; i<recipes.size(); i++) {
@@ -79,16 +83,5 @@ public class RecipeBook {
         }
 
         System.out.println(filtered.toString());
-    }
-
-
-
-    public String toString() {
-        StringBuffer res = new StringBuffer();
-
-        for(int i = 0; i<recipes.size(); i++) {
-            res.append(recipes.get(i).toString() + "\n");
-        }
-        return res.toString();
-    }
+    }*/
 }
