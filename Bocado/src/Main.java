@@ -13,7 +13,12 @@ public class Main {
         list.add(Ingredients.Salt);
         list.add(Ingredients.Beef);
         rb.filter(list);
-
+        list = new ArrayList<Ingredients>();
+        list.add(Ingredients.Aubergine);
+        list.add(Ingredients.Rice);
+        list.add(Ingredients.Corn);
+        JOptionPane.showMessageDialog(null, "Filtrerar dessa 10 recept efter ingredienserna aubergine, rice och corn");
+        rb.filter(list);
 
     }
 }
