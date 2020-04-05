@@ -1,64 +1,182 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.Collections;
 
+/**
+ * Represents a book of recipes, handles all recipes and keeps track of
+ * which ingredients exist in recipes.
+ * @version 1.1
+ * @author Andreas Månsson
+ */
 public class RecipeBook {
 
+    private ArrayList<Recipe> recipes;
+    private ArrayList<String> ingredients = new ArrayList<String>();
 
-    private ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+    /**
+     * Constructor for the Recipe-book. Runs the methods importRecipes() and checkIngredients to populate
+     * the recipes- and ingredients-variables.
+     */
+    public RecipeBook() {
+        importRecipes();
+        //listRecipes();
+        checkIngredients();
+        //Constructor currently contains some test-values just to see that the code works.
+        ArrayList<String> testFilter = new ArrayList<String>();
+        testFilter.add("Broccoli");
+        testFilter.add("Gul lök");
+        testFilter.add("Vitlök");
+        testFilter.add("Pasta");
+        testFilter.add("Ris");
+        testFilter.add("Rättika");
+        ArrayList<Recipe> testRecipes = filterRecipes(testFilter);
 
-    public RecipeBook(int count) {
-        populateRecpies(count);
+        System.out.println("Filtered recipes:");
+        System.out.println(testRecipes.toString());
+        sortFilteredRecipes(testRecipes, testFilter);
     }
 
-    public void populateRecpies(int count) {
+    /**
+     * Imports all recipes using the RecipeReader-class.
+     * Stores them in the recipes-variable.
+     */
+    public void importRecipes() {
+        RecipeReader rr = new RecipeReader();
+        recipes = rr.readAllRecipes();
+    }
 
-        for(int i = 0; i<count; i++) {
-            recipes.add(randomRecipe());
+    /**
+     * Checks the ingredients of all recipes in the recipes-variable, then adds
+     * them to the ingredients-variable. Filters out duplicates.
+     */
+    public void checkIngredients() {
+
+        for(int i = 0; i<recipes.size(); i++) {
+
+            ArrayList<String> currentRecipeIngredients = recipes.get(i).getIngredients();
+
+            for(int j = 0; j<currentRecipeIngredients.size(); j++) {
+                int count = 0;
+                for(int b = 0; b<ingredients.size(); b++) {
+                    if(currentRecipeIngredients.get(j).equals(ingredients.get(b))) {
+                        count++;
+                    }
+                }
+
+                if(count == 0) {
+                    ingredients.add(currentRecipeIngredients.get(j));
+                }
+            }
         }
+
+        /* Test, lists out all ingredients added
+        for(int i = 0; i<ingredients.size(); i++) {
+            System.out.println(ingredients.get(i));
+        }*/
     }
 
-    public Recipe randomRecipe() {
-        String name = randomName().toString();
-        Random rand = new Random();
-        Recipe res = new Recipe(name);
-        res.addIngredients(randomIngredients(rand.nextInt(3) + 2));
+    /**
+     * Iterates through the recipes and returns a new ArrayList of Recipe-objects,
+     * with only the ingredients in the parameter.
+     * @param ingredients array of ingredients to filter by
+     * @return new ArrayList of Recipe-objects after filtering
+     */
+    public ArrayList<Recipe> filterRecipes(ArrayList<String> ingredients) {
 
-        return res;
-    }
+        ArrayList<Recipe> filteredRecipes = new ArrayList<Recipe>();
 
-    public ArrayList<Ingredients> randomIngredients(int count) {
-        List<Ingredients> list = Arrays.asList(Ingredients.values());
-        ArrayList<Ingredients> res = new ArrayList<Ingredients>();
-        Random rand = new Random();
-        int lastIngredient = -1;
-        for(int i = 0; i<count; i++) {
-            int newIngredient = rand.nextInt(list.size());
+        for(int i = 0; i<recipes.size(); i++) {
 
-            while(newIngredient == lastIngredient) {
-                newIngredient = rand.nextInt(list.size());
+            int count = 0;
+
+            ArrayList<String> currentRecipeIngredients = recipes.get(i).getIngredients();
+
+            for(int j = 0; j<currentRecipeIngredients.size(); j++) {
+
+                for(int b = 0; b<ingredients.size(); b++) {
+
+                    if(currentRecipeIngredients.get(j).equals(ingredients.get(b))) {
+                        count++;
+                    }
+                }
             }
 
-            res.add(list.get(newIngredient));
-            lastIngredient = newIngredient;
+            if(count != 0) {
+                filteredRecipes.add(recipes.get(i));
+                recipes.get(i).toString();
+            }
         }
-        return res;
+
+        return filteredRecipes;
     }
 
-    public StringBuffer randomName() {
-        String letters = "abcdefgijklmnopqrstuvwxyz";
-        Random rand = new Random();
-        StringBuffer res = new StringBuffer();
+    /**
+     * Recieves the newly filtered recipe-list and the ingredients the recipes were filtered by,
+     * then sorts them by how many ingredients from the filter that corresponds with the recipe.
+     * @param filteredRecipes the recipes that contain any of the ingredients
+     * @param ingredients the ingredients the recipes have been filtered by.
+     * @return returns the sorted ArrayList
+     */
+    public ArrayList<Recipe> sortFilteredRecipes(ArrayList<Recipe> filteredRecipes, ArrayList<String> ingredients) {
 
-        for(int i = 0; i<rand.nextInt(10) + 1; i++) {
-            res.append(letters.charAt(rand.nextInt(25)));
+        int[] ingredientCount = new int[filteredRecipes.size()];
+        ArrayList<Recipe> sortedRecipes = new ArrayList<Recipe>();
+
+        for(int i = 0; i<filteredRecipes.size(); i++) {
+
+            System.out.println("Checking recipe: " + i);
+
+            ArrayList<String> currentRecipeIngredients = filteredRecipes.get(i).getIngredients();
+            int count = 0;
+
+            for(int j = 0; j<currentRecipeIngredients.size(); j++) {
+                for(int b = 0; b<ingredients.size(); b++) {
+                    if(currentRecipeIngredients.get(j).equals(ingredients.get(b))) {
+                        System.out.println("Adding count to recipe:" + i);
+                        count++;
+                    }
+                }
+            }
+
+            ingredientCount[i] = count;
         }
-        return res;
+
+
+        for(int i = 0; i<ingredientCount.length -1; i++) {
+            int index = i;
+
+            for(int j = i + 1; j<ingredientCount.length; j++) {
+                if(ingredientCount[j] > ingredientCount[index]) {
+                    index = j;
+
+                    int smallerNumber = ingredientCount[index];
+                    ingredientCount[index] = ingredientCount[i];
+                    ingredientCount[i] = smallerNumber;
+                    Collections.swap(filteredRecipes, index, i);
+                }
+            }
+        }
+        //Test: prints out the sorted int-array that's used for sorting the recipes
+        for(int x : ingredientCount) {
+            System.out.println(x);
+        }
+        //Test: prints out the name of the sorted recipes
+        for(Recipe s : filteredRecipes) {
+            System.out.println(s.getName());
+        }
+        return sortedRecipes;
     }
 
+    /**
+     * Prints out the recipes contained in the recipes-variable in the console-window.
+     * Used for testing-purposes.
+     */
+    public void listRecipes() {
+        for(int i = 0; i<recipes.size(); i++) {
+            System.out.println(recipes.get(i).toString());
+        }
+    }
 
-    public void filter(ArrayList<Ingredients> list) {
+    /*public void filter(ArrayList<Ingredients> list) {
         ArrayList<Recipe> filtered = new ArrayList<Recipe>();
 
         for(int i = 0; i<recipes.size(); i++) {
@@ -79,16 +197,5 @@ public class RecipeBook {
         }
 
         System.out.println(filtered.toString());
-    }
-
-
-
-    public String toString() {
-        StringBuffer res = new StringBuffer();
-
-        for(int i = 0; i<recipes.size(); i++) {
-            res.append(recipes.get(i).toString() + "\n");
-        }
-        return res.toString();
-    }
+    }*/
 }
