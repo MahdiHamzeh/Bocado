@@ -1,9 +1,11 @@
-Ing:Pasta
-Ing:Curry
-Ing:Haricot verts
-Ing:Zuccini
+Ing:Svamp
 Ing:Gul lök
-Ing:Vitlök
+Ing:Palsternacka
+Ing:Gurka
+Ing:Dumlekola
+Ing:Rättika
+Ing:Potatis
+Ing:Ättika
 Brödtext, här står vad som finns i receptet
 Radbryt test så att den läser in fler rader
 
