@@ -4,7 +4,7 @@ import java.util.Collections;
 /**
  * Represents a book of recipes, handles all recipes and keeps track of
  * which ingredients exist in recipes.
- * @version 1.0
+ * @version 1.1
  * @author Andreas Månsson
  */
 public class RecipeBook {
