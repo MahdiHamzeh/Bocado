@@ -45,13 +45,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
+  <component name="RunManager" selected="Application.ServerConnection">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.Control.Main" />
       <module name="Bocado-prototyp" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="client.Control.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.controller.Main" />
+      <module name="Bocado-prototyp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -66,8 +79,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ServerConnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.Control.ServerConnection" />
+      <module name="Bocado-prototyp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="client.Control.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="server.test" />
+      <option name="MAIN_CLASS_NAME" value="server.recipeHandler.test" />
       <module name="Bocado-prototyp" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -75,8 +101,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.ServerConnection" />
+        <item itemvalue="Application.Main (2)" />
         <item itemvalue="Application.test" />
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>

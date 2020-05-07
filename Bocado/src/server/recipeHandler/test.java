@@ -1,4 +1,4 @@
-package server;
+package server.recipeHandler;
 
 public class test {
 

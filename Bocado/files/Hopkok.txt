@@ -7,6 +7,6 @@ Ing:Rättika
 Ing:Potatis
 Ing:Ättika
 Brödtext, här står vad som finns i receptet
-Radbryt server.test så att den läser in fler rader
+Radbryt server.recipeHandler.test så att den läser in fler rader
 
 Test med blankrad

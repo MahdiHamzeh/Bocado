@@ -1,5 +1,6 @@
-package server;
+package server.recipeHandler;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @version 1.1
  * @author Andreas Månsson
  */
-public class Recipe {
+public class Recipe implements Serializable {
 
     private String name;
     private ArrayList<String> ingredients;
@@ -18,6 +19,13 @@ public class Recipe {
         this.name = name;
         this.ingredients = ingredients;
         this.instructions = instructions;
+    }
+
+    public Recipe(String name) {
+        this.name = name;
+        this.ingredients = new ArrayList<String>();
+        ingredients.add("null");
+        this.instructions = "null";
     }
 
     /**

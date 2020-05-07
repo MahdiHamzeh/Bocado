@@ -1,4 +1,4 @@
-package server;
+package server.recipeHandler;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -39,9 +39,9 @@ public class RecipeReader {
         return recipes;
     }
     /**
-     * Reads a file with a specific format to create a server.Recipe-object.
+     * Reads a file with a specific format to create a server.recipeHandler.Recipe-object.
      * @param filepath path to the file being read
-     * @return the finished server.Recipe-object
+     * @return the finished server.recipeHandler.Recipe-object
      */
     public Recipe readRecipe(String filepath) {
 

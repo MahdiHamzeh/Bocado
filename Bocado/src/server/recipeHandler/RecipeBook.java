@@ -1,4 +1,4 @@
-package server;
+package server.recipeHandler;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,30 +15,30 @@ public class RecipeBook {
     private ArrayList<String> ingredients = new ArrayList<String>();
 
     /**
-     * Constructor for the server.Recipe-book. Runs the methods importRecipes() and checkIngredients to populate
+     * Constructor for the server.recipeHandler.Recipe-book. Runs the methods importRecipes() and checkIngredients to populate
      * the recipes- and ingredients-variables.
      */
     public RecipeBook() {
         importRecipes();
         //listRecipes();
         checkIngredients();
-        //Constructor currently contains some server.test-values just to see that the code works.
-        ArrayList<String> testFilter = new ArrayList<String>();
-        testFilter.add("Broccoli");
-        testFilter.add("Gul lök");
-        testFilter.add("Vitlök");
-        testFilter.add("Pasta");
-        testFilter.add("Ris");
-        testFilter.add("Rättika");
-        ArrayList<Recipe> testRecipes = filterRecipes(testFilter);
+        //Constructor currently contains some server.recipeHandler.test-values just to see that the code works.
+        //ArrayList<String> testFilter = new ArrayList<String>();
+        //testFilter.add("Broccoli");
+        //testFilter.add("Gul lök");
+        //testFilter.add("Vitlök");
+        //testFilter.add("Pasta");
+        //testFilter.add("Ris");
+        //testFilter.add("Rättika");
+        //ArrayList<Recipe> testRecipes = filterRecipes(testFilter);
 
-        System.out.println("Filtered recipes:");
-        System.out.println(testRecipes.toString());
-        sortFilteredRecipes(testRecipes, testFilter);
+        //System.out.println("Filtered recipes:");
+        //System.out.println(testRecipes.toString());
+        //sortFilteredRecipes(testRecipes, testFilter);
     }
 
     /**
-     * Imports all recipes using the server.RecipeReader-class.
+     * Imports all recipes using the server.recipeHandler.RecipeReader-class.
      * Stores them in the recipes-variable.
      */
     public void importRecipes() {
@@ -77,10 +77,10 @@ public class RecipeBook {
     }
 
     /**
-     * Iterates through the recipes and returns a new ArrayList of server.Recipe-objects,
+     * Iterates through the recipes and returns a new ArrayList of server.recipeHandler.Recipe-objects,
      * with only the ingredients in the parameter.
      * @param ingredients array of ingredients to filter by
-     * @return new ArrayList of server.Recipe-objects after filtering
+     * @return new ArrayList of server.recipeHandler.Recipe-objects after filtering
      */
     public ArrayList<Recipe> filterRecipes(ArrayList<String> ingredients) {
 
@@ -108,7 +108,9 @@ public class RecipeBook {
             }
         }
 
-        return filteredRecipes;
+        ArrayList<Recipe> sortedAndFilteredRecipes = sortFilteredRecipes(filteredRecipes, ingredients);
+        
+        return sortedAndFilteredRecipes;
     }
 
     /**
@@ -165,7 +167,7 @@ public class RecipeBook {
         for(Recipe s : filteredRecipes) {
             System.out.println(s.getName());
         }
-        return sortedRecipes;
+        return filteredRecipes;
     }
 
     /**
@@ -179,7 +181,7 @@ public class RecipeBook {
     }
 
     /*public void filter(ArrayList<Ingredients> list) {
-        ArrayList<server.Recipe> filtered = new ArrayList<server.Recipe>();
+        ArrayList<server.recipeHandler.Recipe> filtered = new ArrayList<server.recipeHandler.Recipe>();
 
         for(int i = 0; i<recipes.size(); i++) {
             int count = 0;
