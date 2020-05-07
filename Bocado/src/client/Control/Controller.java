@@ -1,12 +1,7 @@
 package client.Control;
-
 import client.View.CenterPanel;
 import client.View.MainFrame;
-import client.View.NorthPanel;
-
 import server.recipeHandler.Recipe;
-
-import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -23,22 +18,22 @@ public class Controller {
     public void filterRecipes(String filter){
         ArrayList<Recipe> recipes=new ServerConnection("localhost",2500).sendRequest(filter);
         CenterPanel cPanel = mainframe.getCenterpanel();
-        cPanel.setRecipeList(recipes);
+        cPanel.setRecipeSearchResult(recipes);
     }
 
-    public void readIngredients(){
+    public ArrayList<String> readIngredients(){
+        ArrayList<String> ingredients = new ArrayList<>();
         try {
             File file = new File("files2/Ingredients.txt");
             Scanner myReader = new Scanner(file);
             while (myReader.hasNextLine()) {
-                String info = myReader.nextLine();
-                System.out.println(info);
+                ingredients.add(myReader.nextLine());
             }
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-        }
+        } return ingredients;
     }
 
 }

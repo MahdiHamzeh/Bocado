@@ -2,7 +2,6 @@ package client.View;
 
 import client.Control.Controller;
 import server.recipeHandler.Recipe;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,7 +16,7 @@ public class NorthPanel extends JPanel {
 
     private JPanel leftPanel,rightPanel,buttonPanel;
     private JButton btnSearch,btnAdd, btnDelete,btnClearAll;
-    private JTextField tfSearch;
+    private JComboBox cbSearch;
     private JList list;
     private JScrollPane scrollList;
 
@@ -30,8 +29,8 @@ public class NorthPanel extends JPanel {
         add(rightPanel);
     }
 
-    public String getIngredientsText(){
-        return tfSearch.getText();
+    public Object getIngredientsText(){
+        return cbSearch.getSelectedItem();
     }
 
     public String getListIngredients(){
@@ -41,8 +40,14 @@ public class NorthPanel extends JPanel {
         } return str;
     }
 
+    public ArrayList<String> getReadIngredients(){
+        ArrayList<String> ingredients;
+        ingredients= controller.readIngredients();
+        return ingredients;
+    }
+
     public void clearIngredientsText(){
-        tfSearch.setText("");
+        cbSearch.setSelectedIndex(0);
     }
 
     public void deleteIngredientsText(){
@@ -63,24 +68,24 @@ public class NorthPanel extends JPanel {
     }
 
     public void rightPanel(){
+
+        ArrayList<String> ingredients = getReadIngredients();
+
         rightPanel = new JPanel(new FlowLayout());
-        //setOpaque(false);
-        //rightPanel.setBackground(Color.GRAY);
         buttonPanel = new JPanel(new GridLayout(1,4,4,4));
-        //buttonPanel.setBackground(Color.GRAY);
+
         rightPanel.setBorder(BorderFactory.createTitledBorder("Sök"));
 
+        cbSearch = new JComboBox(ingredients.toArray());
+        cbSearch.setPreferredSize(new Dimension(200,25));
+        cbSearch.setEditable(true);
 
-        tfSearch = new JTextField();
-
-        tfSearch.setPreferredSize(new Dimension(200,25));
-        rightPanel.add(tfSearch);
+        rightPanel.add(cbSearch);
 
         btnAdd = new JButton("Lägg Till");
         btnDelete = new JButton("Ta Bort");
         btnSearch = new JButton("Sök");
         btnClearAll = new JButton("Rensa Allt");
-
 
         buttonPanel.add(btnAdd);
         buttonPanel.add(btnDelete);

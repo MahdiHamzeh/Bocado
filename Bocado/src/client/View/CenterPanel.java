@@ -27,10 +27,8 @@ public class CenterPanel extends JPanel {
         add(rightPanel);
     }
 
-    public void setRecipeList(ArrayList<Recipe> recipes){
+    public void setRecipeSearchResult(ArrayList<Recipe> recipes){
         DefaultListModel dlm = new DefaultListModel();
-
-
 
         for(int i =0; i<recipes.size();i++){
             dlm.addElement(recipes.get(i));
@@ -38,6 +36,13 @@ public class CenterPanel extends JPanel {
         searchList.setModel(dlm);
     }
 
+    //Attempt at populating JTextArea with instruction depending on Selection of Recipe. Not finnished
+    public void setSelectedRecipe(ArrayList<String> ingredients, String instruction){
+        DefaultListModel dlm = new DefaultListModel();
+        int index = searchList.getSelectedIndex();
+
+        txtAreaRecipe.setText(ingredients.toString());
+    }
 
 
     public void LeftPanel(){
@@ -50,7 +55,6 @@ public class CenterPanel extends JPanel {
 
         leftPanel.add(scrollPaneSearchList,BorderLayout.CENTER);
 
-
     }
 
     public void RightPanel(){
@@ -58,9 +62,10 @@ public class CenterPanel extends JPanel {
         rightPanel.setBorder(BorderFactory.createTitledBorder("Recept"));
 
         txtAreaRecipe = new JTextArea();
-        scrollPaneSearchList = new JScrollPane(txtAreaRecipe,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        txtAreaRecipe.setEditable(false);
+        scrollPaneRecipe = new JScrollPane(txtAreaRecipe,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        rightPanel.add(scrollPaneSearchList,BorderLayout.CENTER);
+        rightPanel.add(scrollPaneRecipe,BorderLayout.CENTER);
 
     }
 }

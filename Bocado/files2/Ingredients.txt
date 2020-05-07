@@ -1,3 +1,4 @@
+
 Anka
 Ansjovis
 Aubergine
@@ -12,6 +13,7 @@ Butternutpumpa
 Bönor
 Champinjon
 Couscous
+Curry
 Dadlar
 Entrecôte
 Fikon
