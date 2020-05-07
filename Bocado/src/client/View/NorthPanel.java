@@ -1,13 +1,19 @@
 package client.View;
 
+import client.Control.Controller;
+import server.recipeHandler.Recipe;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class NorthPanel extends JPanel {
 
     DefaultListModel dm = new DefaultListModel();
+    Controller controller;
 
     private JPanel leftPanel,rightPanel,buttonPanel;
     private JButton btnSearch,btnAdd, btnDelete,btnClearAll;
@@ -15,7 +21,8 @@ public class NorthPanel extends JPanel {
     private JList list;
     private JScrollPane scrollList;
 
-    public NorthPanel(){
+    public NorthPanel(Controller controller){
+        this.controller=controller;
         setLayout(new GridLayout(1,2,4,4));
         leftPanel();
         rightPanel();
@@ -105,7 +112,8 @@ public class NorthPanel extends JPanel {
                 deleteIngredientsText();
             }
             else if (e.getSource()==btnSearch){
-                getListIngredients();
+                String str=getListIngredients();
+                controller.filterRecipes(str);
             }
             else if (e.getSource()==btnClearAll){}
 

@@ -1,9 +1,15 @@
 package client.View;
 
+import client.Control.Controller;
+import server.recipeHandler.Recipe;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class CenterPanel extends JPanel {
+
+    Controller controller;
 
     private JList searchList;
     private JScrollPane scrollPaneSearchList, scrollPaneRecipe;
@@ -11,15 +17,26 @@ public class CenterPanel extends JPanel {
 
     private JPanel leftPanel, rightPanel;
 
-    public CenterPanel(){
+
+    public CenterPanel(Controller controller){
+        this.controller=controller;
         setLayout(new GridLayout(1,2,4,4));
         LeftPanel();
         RightPanel();
         add(leftPanel);
         add(rightPanel);
-
-
     }
+
+    public void setRecipeList(ArrayList<Recipe> recipes){
+        DefaultListModel dlm = new DefaultListModel();
+
+        for(int i =0; i<recipes.size();i++){
+            dlm.addElement(i);
+        }
+        searchList.setModel(dlm);
+    }
+
+
 
     public void LeftPanel(){
         leftPanel = new JPanel(new BorderLayout());

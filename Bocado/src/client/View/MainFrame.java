@@ -1,10 +1,15 @@
 package client.View;
 
+import client.Control.Controller;
+
 import javax.swing.*;
 
 public class MainFrame extends JFrame {
+    Controller controller;
+    MainPanel panel;
 
-        public MainFrame(){
+        public MainFrame(Controller controller){
+            this.controller=controller;
             start();
         }
 
@@ -14,12 +19,20 @@ public class MainFrame extends JFrame {
             setTitle("Bocado");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setLocation(150,100);
-            MainPanel panel = new MainPanel();
+            panel = new MainPanel(controller);
             add(panel);
             pack();
 
 
             setVisible(true);
+        }
+
+        public NorthPanel getNortherPanel(){
+            return panel.getNorthpanel();
+        }
+
+        public CenterPanel getCenterpanel(){
+            return panel.getCenterpanel();
         }
 
 }
