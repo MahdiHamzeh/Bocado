@@ -27,6 +27,13 @@ public class NorthPanel extends JPanel {
         return tfSearch.getText();
     }
 
+    public String getListIngredients(){
+        String str="";
+        for(int i = 0; i<list.getModel().getSize();i++){
+            str += list.getModel().getElementAt(i) + ",";
+        } return str;
+    }
+
     public void clearIngredientsText(){
         tfSearch.setText("");
     }
@@ -97,7 +104,9 @@ public class NorthPanel extends JPanel {
             else if (e.getSource()== btnDelete){
                 deleteIngredientsText();
             }
-            else if (e.getSource()==btnSearch){}
+            else if (e.getSource()==btnSearch){
+                getListIngredients();
+            }
             else if (e.getSource()==btnClearAll){}
 
         }
