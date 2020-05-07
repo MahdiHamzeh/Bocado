@@ -19,11 +19,6 @@ public class ServerConnection {
         this.ip = ip;
         this.port = port;
 
-        String filter = "Pasta,Curry,Zuccini";
-        ArrayList<Recipe> testerArray = sendRequest(filter);
-        for(int i = 0; i<testerArray.size(); i++) {
-            System.out.println(testerArray.get(i).toString());
-        }
     }
 
     public void connect() throws IOException {
@@ -60,8 +55,4 @@ public class ServerConnection {
         return noConnection;
     }
 
-    public static void main(String[] args) {
-        ServerConnection sc = new ServerConnection("localhost", 2500);
-
-    }
 }
