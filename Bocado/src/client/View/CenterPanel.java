@@ -30,8 +30,10 @@ public class CenterPanel extends JPanel {
     public void setRecipeList(ArrayList<Recipe> recipes){
         DefaultListModel dlm = new DefaultListModel();
 
+
+
         for(int i =0; i<recipes.size();i++){
-            dlm.addElement(i);
+            dlm.addElement(recipes.get(i));
         }
         searchList.setModel(dlm);
     }

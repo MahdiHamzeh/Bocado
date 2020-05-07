@@ -56,9 +56,14 @@ public class Recipe implements Serializable {
      * Returns a formatted description of the recipe.
      * @return a String
      */
-    public String toString() {
+    /*public String toString() {
         String res = name + ": " + ingredients.toString() + "\n\n" + instructions;
 
+        return res;
+    }*/
+
+    public String toString() {
+        String res = getName();
         return res;
     }
 }
