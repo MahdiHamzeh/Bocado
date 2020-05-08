@@ -5,3 +5,9 @@ Istället för att man bläddrar genom recept, fungerar appen som en sökmotor d
 Vi vill även ha en ”mitt skafferi” funktion i appen. Detta kommer då vara möjligheten för användaren att ha en lista med sparade basvaror och/eller torra varor man har hemma i sitt skafferi. 
 När man sedan söker på recept kommer sökningen utgå ifrån både vad man har matat in för ingredienser	samt”mitt-skafferi”.
 Man kommer även kunna sätt filter ut efter matpreferenser, allergier samt andra restriktioner användaren eventuellt har.
+
+# För att starta Bocado följ stegen nedan:
+1. Ladda ned projektet.
+2. Öppna i IntelliJ.
+3. Starta Main i Package server (server ---> controller ----> Main).
+4. Starta Main i Package client (client ---> Control ---> Main).
