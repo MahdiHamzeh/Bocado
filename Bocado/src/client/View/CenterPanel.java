@@ -4,6 +4,8 @@ import client.Control.Controller;
 import server.recipeHandler.Recipe;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -36,12 +38,17 @@ public class CenterPanel extends JPanel {
         searchList.setModel(dlm);
     }
 
-    //Attempt at populating JTextArea with instruction depending on Selection of Recipe. Not finnished
-    public void setSelectedRecipe(ArrayList<String> ingredients, String instruction){
-        DefaultListModel dlm = new DefaultListModel();
-        int index = searchList.getSelectedIndex();
+    
+    public void setSelectedRecipe(Recipe recipe) {
 
-        txtAreaRecipe.setText(ingredients.toString());
+        String ingredients = "";
+        ArrayList<String> arr = recipe.getIngredients();
+        for(int i = 0; i<arr.size(); i++) {
+            ingredients += arr.get(i) + "\n";
+        }
+        String str = recipe.getName() + "\n\n" + ingredients + "\n" + recipe.getInstructions();
+
+        txtAreaRecipe.setText(str);
     }
 
 
@@ -54,7 +61,7 @@ public class CenterPanel extends JPanel {
         scrollPaneSearchList = new JScrollPane(searchList,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         leftPanel.add(scrollPaneSearchList,BorderLayout.CENTER);
-
+        searchList.addListSelectionListener(new ListListener());
     }
 
     public void RightPanel(){
@@ -67,5 +74,12 @@ public class CenterPanel extends JPanel {
 
         rightPanel.add(scrollPaneRecipe,BorderLayout.CENTER);
 
+
+    }
+
+    private class ListListener implements ListSelectionListener {
+        public void valueChanged(ListSelectionEvent e) {
+            setSelectedRecipe((Recipe)searchList.getSelectedValue());
+        }
     }
 }
