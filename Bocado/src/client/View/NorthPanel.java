@@ -51,8 +51,12 @@ public class NorthPanel extends JPanel {
     }
 
     public void deleteIngredientsText(){
-        int index = list.getSelectedIndex();
-        dm.removeElementAt(index);
+        try {
+            int index = list.getSelectedIndex();
+            dm.removeElementAt(index);
+        } catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null,"Markera den ingrediens du vill ta bort");
+        }
     }
 
     public void leftPanel(){
@@ -61,6 +65,7 @@ public class NorthPanel extends JPanel {
 
         list = new JList();
         list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        list.setSelectedIndex(0);
         scrollList = new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         leftPanel.add(scrollList);
@@ -72,32 +77,30 @@ public class NorthPanel extends JPanel {
         ArrayList<String> ingredients = getReadIngredients();
 
         rightPanel = new JPanel(new FlowLayout());
-        buttonPanel = new JPanel(new GridLayout(1,4,4,4));
-
+        buttonPanel = new JPanel(new GridLayout(1,3,4,4));
         rightPanel.setBorder(BorderFactory.createTitledBorder("Sök"));
 
         cbSearch = new JComboBox(ingredients.toArray());
         cbSearch.setPreferredSize(new Dimension(200,25));
-        cbSearch.setEditable(true);
+        cbSearch.setEditable(false);
 
         rightPanel.add(cbSearch);
 
         btnAdd = new JButton("Lägg Till");
         btnDelete = new JButton("Ta Bort");
         btnSearch = new JButton("Sök");
-        btnClearAll = new JButton("Rensa Allt");
+        //btnClearAll = new JButton("Rensa Allt");
 
         buttonPanel.add(btnAdd);
         buttonPanel.add(btnDelete);
         buttonPanel.add(btnSearch);
-        buttonPanel.add(btnClearAll);
+        //buttonPanel.add(btnClearAll);
 
         ButtonListener listener = new ButtonListener();
-
         btnAdd.addActionListener(listener);
         btnDelete.addActionListener(listener);
         btnSearch.addActionListener(listener);
-        btnClearAll.addActionListener(listener);
+        //btnClearAll.addActionListener(listener);
 
         rightPanel.add(buttonPanel);
 
@@ -120,7 +123,7 @@ public class NorthPanel extends JPanel {
                 String str=getListIngredients();
                 controller.filterRecipes(str);
             }
-            else if (e.getSource()==btnClearAll){}
+            //else if (e.getSource()==btnClearAll){}
 
         }
     }

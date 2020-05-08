@@ -1,4 +1,3 @@
-
 Anka
 Ansjovis
 Aubergine
@@ -62,6 +61,7 @@ Ostrn
 Oumph
 Oxfilé
 Paprika
+Pasta
 Persilja
 Picnicbog
 Pilgrimsmusslor
