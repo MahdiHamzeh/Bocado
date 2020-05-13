@@ -21,6 +21,11 @@ public class Controller {
         cPanel.setRecipeSearchResult(recipes);
     }
 
+    public void clearRecipes() {
+        CenterPanel cPanel = mainframe.getCenterpanel();
+        cPanel.clearRecipes();
+    }
+
     public ArrayList<String> readIngredients(){
         ArrayList<String> ingredients = new ArrayList<>();
         try {

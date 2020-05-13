@@ -59,6 +59,11 @@ public class NorthPanel extends JPanel {
         }
     }
 
+    public void clearAll() {
+        dm.removeAllElements();
+        controller.clearRecipes();
+    }
+
     public boolean isIngredientsEmpty() {
         if(list.getModel().getSize() == 0) {
             return true;
@@ -98,19 +103,19 @@ public class NorthPanel extends JPanel {
         btnAdd = new JButton("Lägg Till");
         btnDelete = new JButton("Ta Bort");
         btnSearch = new JButton("Sök");
-        //btnClearAll = new JButton("Rensa Allt");
+        btnClearAll = new JButton("Rensa Allt");
 
         buttonPanel.add(btnAdd);
         buttonPanel.add(btnDelete);
         buttonPanel.add(btnSearch);
         btnSearch.setEnabled(false);
-        //buttonPanel.add(btnClearAll);
+        buttonPanel.add(btnClearAll);
 
         ButtonListener listener = new ButtonListener();
         btnAdd.addActionListener(listener);
         btnDelete.addActionListener(listener);
         btnSearch.addActionListener(listener);
-        //btnClearAll.addActionListener(listener);
+        btnClearAll.addActionListener(listener);
 
         rightPanel.add(buttonPanel);
 
@@ -151,7 +156,15 @@ public class NorthPanel extends JPanel {
                     btnSearch.setEnabled(true);
                 }
             }
-            //else if (e.getSource()==btnClearAll){}
+            else if (e.getSource()==btnClearAll){
+                clearAll();
+                if(isIngredientsEmpty() == true) {
+                    btnSearch.setEnabled(false);
+                }
+                else {
+                    btnSearch.setEnabled(true);
+                }
+            }
 
         }
     }

@@ -19,6 +19,7 @@ public class CenterPanel extends JPanel {
 
     private JPanel leftPanel, rightPanel;
 
+    private DefaultListModel dlm;
 
     public CenterPanel(Controller controller){
         this.controller=controller;
@@ -30,12 +31,18 @@ public class CenterPanel extends JPanel {
     }
 
     public void setRecipeSearchResult(ArrayList<Recipe> recipes){
-        DefaultListModel dlm = new DefaultListModel();
+
+        dlm = new DefaultListModel();
 
         for(int i =0; i<recipes.size();i++){
             dlm.addElement(recipes.get(i));
         }
         searchList.setModel(dlm);
+    }
+
+    public void clearRecipes() {
+        dlm.removeAllElements();
+        txtAreaRecipe.setText("");
     }
 
     
@@ -79,7 +86,12 @@ public class CenterPanel extends JPanel {
 
     private class ListListener implements ListSelectionListener {
         public void valueChanged(ListSelectionEvent e) {
-            setSelectedRecipe((Recipe)searchList.getSelectedValue());
+
+            try{
+                setSelectedRecipe((Recipe)searchList.getSelectedValue());
+            } catch(NullPointerException l) {
+
+            }
         }
     }
 }
