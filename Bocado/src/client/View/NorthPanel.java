@@ -59,6 +59,15 @@ public class NorthPanel extends JPanel {
         }
     }
 
+    public boolean isIngredientsEmpty() {
+        if(list.getModel().getSize() == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public void leftPanel(){
         leftPanel = new JPanel(new BorderLayout());
         leftPanel.setBorder(BorderFactory.createTitledBorder("Ingredienser"));
@@ -94,6 +103,7 @@ public class NorthPanel extends JPanel {
         buttonPanel.add(btnAdd);
         buttonPanel.add(btnDelete);
         buttonPanel.add(btnSearch);
+        btnSearch.setEnabled(false);
         //buttonPanel.add(btnClearAll);
 
         ButtonListener listener = new ButtonListener();
@@ -115,13 +125,31 @@ public class NorthPanel extends JPanel {
                 list.setModel(dm);
                 dm.addElement(getIngredientsText());
                 clearIngredientsText();
+                if(isIngredientsEmpty() == true) {
+                    btnSearch.setEnabled(false);
+                }
+                else {
+                    btnSearch.setEnabled(true);
+                }
             }
             else if (e.getSource()== btnDelete){
                 deleteIngredientsText();
+                if(isIngredientsEmpty() == true) {
+                    btnSearch.setEnabled(false);
+                }
+                else {
+                    btnSearch.setEnabled(true);
+                }
             }
             else if (e.getSource()==btnSearch){
                 String str=getListIngredients();
                 controller.filterRecipes(str);
+                if(isIngredientsEmpty() == true) {
+                    btnSearch.setEnabled(false);
+                }
+                else {
+                    btnSearch.setEnabled(true);
+                }
             }
             //else if (e.getSource()==btnClearAll){}
 
