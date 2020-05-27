@@ -1,10 +1,15 @@
-Ing:Pasta
-Ing:Curry
-Ing:Haricot verts
-Ing:Aubergine
-Ing:Gul lök
+Ing:Gul Lök
 Ing:Vitlök
-Brödtext, här står vad som finns i receptet
-Radbryt server.recipeHandler.test så att den läser in fler rader
-
-Test med blankrad
+Ing:Nötfärs
+Ing:Tomatpure
+Ing:Timjan
+Ing:Krossade Tomater
+Ing:Lasagneplattor
+Sätt ugnen på 175C
+Skala och hacka lök samt vitlök. Fräsfärs, lök och vitlök i oljan i en stekpanna.
+Tillsätt tomatpure som får fräsa med i färsen. Krudda med timjan och rosmarin.
+Tillsätt krossade tomater och buljongtärning.
+Låt det därefter koka i ca 10min. Smaka av med salt och peppar.
+Varva sås, lasagneplattor och köttfärssåsen i en ugnsäker form. Avsluta med sås och ost
+Sätt mitt i ugnen ca 40min.
+Servera gärna med en god sallad till!

@@ -22,6 +22,7 @@ Fläskkarré
 Fläskkotlett
 Fransyska
 Fänkål
+Gul Lök
 Grönkål
 Halloumi
 Hjortron
@@ -44,6 +45,8 @@ Kyckling
 Kålrot
 Köttfärs
 Lamm
+Lammfärs
+Lasagneplattor
 Lax
 Linser
 Löjrom
@@ -55,12 +58,14 @@ Morot
 Musslor
 Mynta
 Märgpipa
+Nötfärs
 Okra
 Ost
 Ostrn
 Oumph
 Oxfilé
 Paprika
+Parmesan ost
 Pasta
 Persilja
 Picnicbog

@@ -1,10 +1,12 @@
-Ing:Pasta
-Ing:Curry
+Ing:Spaghetti
+Ing:Bacon
 Ing:Haricot verts
-Ing:Zuccini
-Ing:Gul lök
+Ing:Ruccola
+Ing:Gul Lök
 Ing:Vitlök
-Brödtext, här står vad som finns i receptet
-Radbryt server.recipeHandler.test så att den läser in fler rader
 
-Test med blankrad
+Koka Spaghetti enligt anvisningarna
+Stek bacon bitarna knapriga i en stekpanna
+Visa ihop grädde, parmesanost, salt och svartpeppar i en bunke
+Häll av pastan och häll tillbaka den i kastrullen, vänd ner äggplandningen och det stekta baconet
+Tillserveringen så lägg upp på ett gat tillsammans med ruccolasalladen samt Haricot verts.
