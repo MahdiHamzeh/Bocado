@@ -6,6 +6,14 @@ import java.util.ArrayList;
 
 import server.recipeHandler.Recipe;
 
+/**
+ * Handles the connection between the client and server, from the client end.
+ * @version 1.0
+ * @author Andreas Månsson, Gustaf Hermansson
+ *
+ */
+
+
 public class ServerConnection {
 
     private String ip;
@@ -21,6 +29,10 @@ public class ServerConnection {
 
     }
 
+    /**
+     * Connects to the server and opens up both an output steam and an input stream.
+     * @throws IOException
+     */
     public void connect() throws IOException {
         socket = new Socket(ip, port);
         //socket.setSoTimeout(5000);
@@ -29,10 +41,21 @@ public class ServerConnection {
         System.out.println("Connected to server on ip " + ip + " and port " + port);
     }
 
+    /**
+     * Disconnects from the server.
+     * @throws IOException
+     */
     public void disconnect() throws IOException {
         socket.close();
     }
 
+    /**
+     * Accepts a filter in the form of a String, containing all the ingredients
+     * and dietary preferences. After that it sends the filter to the server
+     * and recieves back an ArrayList of recipes that match the filter.
+     * @param filter String in a specific format containing ingredients and preferences
+     * @return ArrayList of Recipe-objects that match the filter
+     */
     public ArrayList<Recipe> sendRequest(String filter) {
         try {
             connect();

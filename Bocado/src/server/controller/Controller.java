@@ -5,6 +5,12 @@ import server.recipeHandler.*;
 
 import java.util.ArrayList;
 
+/**
+ * Controller-class that handles communication between the
+ * network- and data-parts of the application.
+ * @version 1.1
+ * @author Andreas Månsson
+ */
 
 public class Controller {
 

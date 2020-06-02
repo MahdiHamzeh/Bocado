@@ -10,6 +10,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Handles the connection between the client and server, from the server end.
+ * @version 1.0
+ * @author Andreas Månsson
+ *
+ */
 public class ClientReceiver {
 
     private ServerSocket serverSocket;
@@ -29,7 +35,10 @@ public class ClientReceiver {
     }
 
 
-
+    /**
+     * Inner class that handles connections from the clients.
+     * @author Andreas Månsson
+     */
     private class ClientHandler extends Thread {
 
         public void run() {

@@ -4,6 +4,8 @@ Ing:Haricot verts
 Ing:Zuccini
 Ing:Gul lök
 Ing:Vitlök
+Ing:Krossade tomater
+Ing:Palsternacka
 Brödtext, här står vad som finns i receptet
 Radbryt server.recipeHandler.test så att den läser in fler rader
 

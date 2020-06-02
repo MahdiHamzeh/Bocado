@@ -5,8 +5,9 @@ import java.util.ArrayList;
 
 /**
  * Handles reading of recipes from text files.
- * @version 1.0
+ * @version 1.1
  * @author Andreas Månsson
+ * @edited Mahdi Hamza
  */
 public class RecipeReader {
 
