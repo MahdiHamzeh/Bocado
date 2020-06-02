@@ -26,6 +26,14 @@ public class Controller {
         cPanel.clearRecipes();
     }
 
+    public void recipeSearch(String search) {
+
+        Recipe result = new ServerConnection("localhost", 2500).sendSearch(search);
+        CenterPanel cPanel = mainframe.getCenterpanel();
+        cPanel.setSelectedRecipe(result);
+
+    }
+
     public ArrayList<String> readIngredients(){
         ArrayList<String> ingredients = new ArrayList<>();
         try {

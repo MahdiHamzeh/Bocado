@@ -56,17 +56,24 @@ public class ClientReceiver {
                     input = dis.readUTF();
                     System.out.println(input);
                     String[] ingredients = input.split(",");
-                    ArrayList<String> filter = new ArrayList<String>();
+                    if(ingredients[0].equals("ING")) {
+                        ArrayList<String> filter = new ArrayList<String>();
 
-                    for(int i = 0; i<ingredients.length; i++) {
-                        filter.add(ingredients[i]);
+                        for (int i = 0; i < ingredients.length; i++) {
+                            filter.add(ingredients[i]);
+                        }
+
+
+                        ArrayList<Recipe> recipes = controller.getFilteredAndSortedRecipes(filter);
+
+                        oos.writeObject(recipes);
+                        oos.flush();
                     }
-
-
-                    ArrayList<Recipe> recipes = controller.getFilteredAndSortedRecipes(filter);
-
-                    oos.writeObject(recipes);
-                    oos.flush();
+                    else if (ingredients[0].equals("REC")) {
+                        Recipe result = controller.getRecipeSearch(ingredients[1]);
+                        oos.writeObject(result);
+                        oos.flush();
+                    }
 
                 } catch(IOException e) {
                     e.printStackTrace();

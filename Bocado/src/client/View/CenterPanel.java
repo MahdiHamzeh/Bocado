@@ -59,6 +59,7 @@ public class CenterPanel extends JPanel {
     }
 
 
+
     public void LeftPanel(){
         leftPanel = new JPanel(new BorderLayout());
         leftPanel.setBorder(BorderFactory.createTitledBorder("Sök Resultat"));

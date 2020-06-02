@@ -29,4 +29,9 @@ public class Controller {
 
 
     }
+
+    public Recipe getRecipeSearch(String search) {
+
+        return recipeBook.recipeSearch(search);
+    }
 }

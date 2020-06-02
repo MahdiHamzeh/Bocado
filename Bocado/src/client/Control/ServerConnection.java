@@ -31,6 +31,7 @@ public class ServerConnection {
 
     /**
      * Connects to the server and opens up both an output steam and an input stream.
+     *
      * @throws IOException
      */
     public void connect() throws IOException {
@@ -43,6 +44,7 @@ public class ServerConnection {
 
     /**
      * Disconnects from the server.
+     *
      * @throws IOException
      */
     public void disconnect() throws IOException {
@@ -53,6 +55,7 @@ public class ServerConnection {
      * Accepts a filter in the form of a String, containing all the ingredients
      * and dietary preferences. After that it sends the filter to the server
      * and recieves back an ArrayList of recipes that match the filter.
+     *
      * @param filter String in a specific format containing ingredients and preferences
      * @return ArrayList of Recipe-objects that match the filter
      */
@@ -62,14 +65,13 @@ public class ServerConnection {
             dos.writeUTF(filter);
             dos.flush();
 
-            ArrayList<Recipe> filteredRecipes = (ArrayList<Recipe>)ois.readObject();
+            ArrayList<Recipe> filteredRecipes = (ArrayList<Recipe>) ois.readObject();
 
             disconnect();
             return filteredRecipes;
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -77,5 +79,25 @@ public class ServerConnection {
         noConnection.add(new Recipe("No Connection"));
         return noConnection;
     }
+
+    public Recipe sendSearch(String search) {
+        try {
+            connect();
+            dos.writeUTF(search);
+            dos.flush();
+
+            Recipe result = (Recipe) ois.readObject();
+
+            disconnect();
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
 }

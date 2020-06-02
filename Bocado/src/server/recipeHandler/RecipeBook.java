@@ -180,6 +180,15 @@ public class RecipeBook {
         }
     }
 
+    public Recipe recipeSearch(String search) {
+        for(int i = 0; i<recipes.size(); i++) {
+            if(recipes.get(i).getName().equals(search)) {
+                return recipes.get(i);
+            }
+        }
+        return null;
+    }
+
     /*public void filter(ArrayList<Ingredients> list) {
         ArrayList<server.recipeHandler.Recipe> filtered = new ArrayList<server.recipeHandler.Recipe>();
 
