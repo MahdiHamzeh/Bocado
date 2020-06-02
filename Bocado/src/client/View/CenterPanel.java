@@ -41,7 +41,11 @@ public class CenterPanel extends JPanel {
     }
 
     public void clearRecipes() {
-        dlm.removeAllElements();
+        try{
+            dlm.removeAllElements();
+        }catch(NullPointerException e) {
+        }
+
         txtAreaRecipe.setText("");
     }
 
