@@ -1,10 +1,17 @@
 Ing:Ris
 Ing:Curry
-Ing:Haricot verts
-Ing:Broccoli
+Ing:Kyckling
+Ing:Olja
 Ing:Gul lök
 Ing:Vitlök
-Brödtext, här står vad som finns i receptet
-Radbryt server.recipeHandler.test så att den läser in fler rader
+Ing:Kokosmjölk
+Ing:Sockerärtor
+Sätt på en kastrull med vatten till nudlarna.
 
-Test med blankrad
+Skala och skär löken i strimlor. Fräs lök och kyckling i oljan i en gryta. Krydda med curry och salt.
+
+Tillsätt kokosmjölk och smula ner buljongtärningen. Låt grytan koka 5 minuter.
+
+Koka nudlarna och sockerärterna enligt anvisningen på nudelförpackningen.
+
+Servera grytan med nudlarna och sockerärterna.
