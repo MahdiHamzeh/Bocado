@@ -1,12 +1,17 @@
-Ing:Svamp
+Ing:Älg
 Ing:Gul lök
-Ing:Palsternacka
-Ing:Gurka
-Ing:Dumlekola
-Ing:Rättika
 Ing:Potatis
-Ing:Ättika
-Brödtext, här står vad som finns i receptet
-Radbryt server.recipeHandler.test så att den läser in fler rader
+Ing:Palsternacka
+Ing:Champonjoner
+Ing:Matlagningsgrädde
+Ing:Crème Fraiche
 
-Test med blankrad
+
+Detta serveras med stor fördel i muurikka men fungerar även på spisen.
+Förberedelser: Koka potatisen inte helt färdig och tärna i lagom stora bitar.
+Skär köttet i strimlor, dela löken i smala klyftor. Ansa och dela svamparna.
+Bryn köttet, krydda med salt och peppar.
+Tillsätt lök och svamp, låt det hela fräsa tills svampen tappat all vätska.
+Lägg i potatisen och låt allt bli varmt.
+Häll över grädde och tillsätt creme fraiche.
+Servera direkt från muurikkan och låt er väl smakas.

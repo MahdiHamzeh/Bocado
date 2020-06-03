@@ -1,11 +1,45 @@
-Ing:Pasta
-Ing:Curry
-Ing:Haricot verts
-Ing:Aubergine
-Ing:Gul lök
+Ing:Köttfär
+Ing:Champinjoner
+Ing:Sidfläsk
+Ing:Passerade tomater
+Ing:Tomatpuré
 Ing:Vitlök
 Ing:Krossade tomater
-Brödtext, här står vad som finns i receptet
-Radbryt server.recipeHandler.test så att den läser in fler rader
+Ing:Olivolja
+Ing:Smör
+Ing:Salt
+Ing:Svartpeppar
+Ing:Prästost
+Ing:Lasagneplattor
+Ing:Mjölk
+Ing:Vispgrädde
+Ing:Vetemjöl
+Ing:Muskotnöt
 
-Test med blankrad
+
+Köttfärssås
+
+Mal köttet om du väljer att göra det själv.
+Skär sidfläsket och champinjonerna fint.
+Finhacka vitlöken.
+Fräs köttet i en panna med smör tills det blir brynt.
+Fräs sedan sidfläsket, champinjonerna och vitlöken i lite olivolja tills det blir gyllenbrynt.
+Avsluta med att ha i tomatpurén.
+Lägg alltsammans i en tjockbottnad gryta (gärna en järngryta) och häll i den passerade tomaten.
+Smaka av med salt och nymalen svartpeppar.
+Låt alltsammans puttra i grytan 30-40 minuter.
+
+Bechamelsås
+Värm upp grädde och mjölk.
+Smält smöret i en annan kastrull och pudra över mjölet.
+Rör om med en visp så att mjölet löser sig i smöret ordentligt.
+Slå i hälften av den varma gräddmjölken och rör om så det blir slätt och fint.
+Slå i resten och vispa om.
+Låt sjuda sakta i 5-10 minuter.
+Smaka av med salt, peppar och några drag på muskotnöten.
+
+Lasagne
+Ta en något djupare ugnsform och lägg ett lager plattor i botten.
+Varva med ett lager bechamelsås och riven ost och ett lager med köttfärs.
+Fortsätt tills alla plattor är slut och avsluta lasagnen med ett sista lager av köttfärssås, bechamelsås samt ost.
+Sätt in i ugnen och grädda din lasagne i 20-30 minuter i 200 grader.

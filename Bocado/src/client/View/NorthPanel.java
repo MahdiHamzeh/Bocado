@@ -148,7 +148,7 @@ public class NorthPanel extends JPanel {
         panel.setLayout(new FlowLayout());
         panel.setBorder(BorderFactory.createTitledBorder("Sök"));
 
-        String[] recipe = {"Carbonara", "Lasagne", "Hopkok", "Curry"};
+        String[] recipe = {"Carbonara", "Lasagne", "Hopkok", "Curry", "Fransk Potatissallad", "BangBangKyckling","Ungsbackad Lax med Teriyakisås"};
 
         cbRecipe = new JComboBox(recipe);
         cbRecipe.setPreferredSize(new Dimension(200,25));

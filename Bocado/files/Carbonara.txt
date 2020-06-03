@@ -1,12 +1,14 @@
 Ing:Pasta
-Ing:Curry
-Ing:Haricot verts
-Ing:Zuccini
-Ing:Gul lök
-Ing:Vitlök
-Ing:Krossade tomater
-Ing:Palsternacka
-Brödtext, här står vad som finns i receptet
-Radbryt server.recipeHandler.test så att den läser in fler rader
+Ing:Ägg
+Ing:Bacon
+Ing:Parmesanost
+Ing:Salt
+Ing:Peppar
 
-Test med blankrad
+Börja med att skära sidfläsk i strimlor.
+Koka upp vatten med 10 g salt per liter och häll i pasta.
+Stek fläsket gyllenbrunt, knäck äggen, blanda med vispgrädde, parmesanost, en nypa salt och svartpeppar.
+Häll av pastan när den är färdigkokt och häll den i stekpannan med fläsket, därefter äggblandningen och rör om försiktigt över svag värme 30 sekunder.
+Fördela din pasta carbonara på fyra tallrikar och avsluta med lite nymalen svartpeppar.
+Servera eventuellt rätten med ytterligare en äggula på toppen.
+Matsortera dina äggskal till återvinning och njut av din pastarätt!
