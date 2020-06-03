@@ -37,6 +37,7 @@ Karljohansvamp
 Kassler
 Kidneybönor
 Kikärter
+Kinesisk Soja
 Koriander
 Korv
 Krossade tomater
@@ -104,6 +105,7 @@ Svamp
 Svartabönor
 Sötpotatis
 Tagliatelle
+Teriyakisås
 Timjan
 Tofu
 Tomat
