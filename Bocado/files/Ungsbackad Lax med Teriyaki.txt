@@ -1,11 +1,10 @@
-600 g laxfilé
-2 dl teriyakisås
-1 dl blandade frön, blandade (t ex sesam-, pumpa- och solrosfrön)
-Serveras med
-ris (eller nudlar)
-bit papaya (eller mango, kiwi eller melon)
-
-Ugnsbakad lax
+Ing:Lax
+Ing:Teriyakisås
+Ing:Sesamfrön
+Ing:Pumpafrön
+Ing:Solrosfrön
+Ing:Ris
+Ing:Mango
 
 Värm ugnen till 200 grader.
 Lägg laxsidan i en smord ugnsform.
