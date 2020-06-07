@@ -7,8 +7,6 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Handles the connection between the client and server, from the server end.
@@ -44,14 +42,11 @@ public class ClientReceiver {
         public void run() {
             String input;
 
-            System.out.println("Server started, listening for client requests on port " + serverSocket.getLocalPort());
-
             while(true) {
                 try (Socket socket = serverSocket.accept();
                      DataInputStream dis = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
                      ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream()))
                 {
-                    System.out.println("Client connected");
 
                     input = dis.readUTF();
                     System.out.println(input);

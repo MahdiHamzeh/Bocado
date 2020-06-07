@@ -1,7 +1,8 @@
 package client.Control;
 
-import client.View.MainFrame;
-
+/**
+ * Class that starts the Client.
+ */
 public class Main {
 
     public static void main(String[] args) {

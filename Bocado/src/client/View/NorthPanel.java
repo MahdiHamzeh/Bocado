@@ -1,21 +1,24 @@
 package client.View;
 
 import client.Control.Controller;
-import server.recipeHandler.Recipe;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.concurrent.Flow;
 import javax.swing.JTabbedPane;
 
+/**
+ * JPanel that handles inputs.
+ * @version 1.5
+ * @author Gustaf Hermansson
+ * @edited Andreas Månsson, Mahdi Hamzeh
+ */
 public class NorthPanel extends JPanel {
 
-    DefaultListModel dm = new DefaultListModel();
-    Controller controller;
+    private DefaultListModel dm = new DefaultListModel();
+    private Controller controller;
 
     private JPanel leftPanel,buttonPanel;
     private JTabbedPane rightPanel;
@@ -34,10 +37,18 @@ public class NorthPanel extends JPanel {
         add(rightPanel);
     }
 
+    /**
+     * Gets the selected item of the list of ingredients.
+     * @return the currently selected item
+     */
     public Object getIngredientsText(){
         return cbSearch.getSelectedItem();
     }
 
+    /**
+     * Gets all ingredients that have been added to the left list.
+     * @return list of ingredients in a formatted String.
+     */
     public String getListIngredients(){
         String str="ING,";
         for(int i = 0; i<list.getModel().getSize();i++){
@@ -45,16 +56,26 @@ public class NorthPanel extends JPanel {
         } return str;
     }
 
+    /**
+     * Calls the controller to get all ingredients from text file.
+     * @return list of all ingredients.
+     */
     public ArrayList<String> getReadIngredients(){
         ArrayList<String> ingredients;
         ingredients= controller.readIngredients();
         return ingredients;
     }
 
+    /**
+     * Sets the selected index of the ingredients list to 0.
+     */
     public void clearIngredientsText(){
         cbSearch.setSelectedIndex(0);
     }
 
+    /**
+     * Deletes an ingredient from the list of selected ingredients.
+     */
     public void deleteIngredientsText(){
         try {
             int index = list.getSelectedIndex();
@@ -64,11 +85,18 @@ public class NorthPanel extends JPanel {
         }
     }
 
+    /**
+     * Clears all search-fields and selected recipes.
+     */
     public void clearAll() {
         dm.removeAllElements();
         controller.clearRecipes();
     }
 
+    /**
+     * Checks if the list of ingredients is empty.
+     * @return a boolean of the result of the check.
+     */
     public boolean isIngredientsEmpty() {
         if(list.getModel().getSize() == 0) {
             return true;
@@ -78,6 +106,9 @@ public class NorthPanel extends JPanel {
         }
     }
 
+    /**
+     * Sets up the left panel.
+     */
     public void leftPanel(){
         leftPanel = new JPanel(new BorderLayout());
         leftPanel.setBorder(BorderFactory.createTitledBorder("Ingredienser"));
@@ -91,7 +122,9 @@ public class NorthPanel extends JPanel {
 
     }
 
-
+    /**
+     * Sets up the right panel.
+     */
     public void rightPanel() {
 
         rightPanel = new JTabbedPane();
@@ -105,6 +138,10 @@ public class NorthPanel extends JPanel {
 
     }
 
+    /**
+     * Creates and returns a panel for the tabbed pane.
+     * @return completed JPanel
+     */
     public JComponent makePanel() {
 
         ArrayList<String> ingredients = getReadIngredients();
@@ -142,6 +179,10 @@ public class NorthPanel extends JPanel {
         return panel;
     }
 
+    /**
+     * Creates and returns a panel for the tabbed pane.
+     * @return completed JPanel
+     */
     public JComponent makePanel2() {
 
         JPanel panel = new JPanel(false);
@@ -165,7 +206,9 @@ public class NorthPanel extends JPanel {
         return panel;
     }
 
-
+    /**
+     * Listener class that listens for button-presses, and handles them accordingly.
+     */
     private class ButtonListener implements ActionListener{
 
         @Override

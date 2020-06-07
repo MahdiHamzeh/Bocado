@@ -56,12 +56,11 @@ public class Recipe implements Serializable {
      * Returns a formatted description of the recipe.
      * @return a String
      */
-    /*public String toString() {
-        String res = name + ": " + ingredients.toString() + "\n\n" + instructions;
 
-        return res;
-    }*/
-
+    /**
+     * toString is used in a JList of recipe-names, hence it returns the name.
+     * @return recipe-name
+     */
     public String toString() {
         String res = getName();
         return res;

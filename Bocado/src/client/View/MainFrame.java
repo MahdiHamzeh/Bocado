@@ -4,16 +4,25 @@ import client.Control.Controller;
 
 import javax.swing.*;
 
+/**
+ * MainFrame-class that handles the entire View.
+ * @version 1.3
+ * @author Gustaf Hermansson
+ */
 public class MainFrame extends JFrame {
-    Controller controller;
-    MainPanel panel;
+    private Controller controller;
+    private MainPanel panel;
 
-        public MainFrame(Controller controller){
+
+    public MainFrame(Controller controller){
             this.controller=controller;
             start();
         }
 
-        public void start(){
+    /**
+     * Sets up the frame.
+     */
+    public void start(){
 
             setSize(800,600);
             setTitle("Bocado");
@@ -27,11 +36,13 @@ public class MainFrame extends JFrame {
             setVisible(true);
         }
 
-        public NorthPanel getNortherPanel(){
+
+    public NorthPanel getNortherPanel(){
             return panel.getNorthpanel();
         }
 
-        public CenterPanel getCenterpanel(){
+
+    public CenterPanel getCenterpanel(){
             return panel.getCenterpanel();
         }
 

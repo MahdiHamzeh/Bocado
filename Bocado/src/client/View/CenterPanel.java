@@ -9,9 +9,15 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * JPanel that handles display of outputs.
+ * @version 1.5
+ * @author Gustaf Hermansson
+ * @edited Andreas Månsson, Mahdi Hamzeh
+ */
 public class CenterPanel extends JPanel {
 
-    Controller controller;
+    private Controller controller;
 
     private JList searchList;
     private JScrollPane scrollPaneSearchList, scrollPaneRecipe;
@@ -30,6 +36,10 @@ public class CenterPanel extends JPanel {
         add(rightPanel);
     }
 
+    /**
+     * Sets the list of recipes to the parameter.
+     * @param recipes ArrayList of Recipe-objects
+     */
     public void setRecipeSearchResult(ArrayList<Recipe> recipes){
 
         dlm = new DefaultListModel();
@@ -40,6 +50,9 @@ public class CenterPanel extends JPanel {
         searchList.setModel(dlm);
     }
 
+    /**
+     * Clears all info from all fields.
+     */
     public void clearRecipes() {
         try{
             dlm.removeAllElements();
@@ -49,7 +62,11 @@ public class CenterPanel extends JPanel {
         txtAreaRecipe.setText("");
     }
 
-    
+    /**
+     * Gets information from the Recipe-object input and outputs the formatted info
+     * in the text area.
+     * @param recipe
+     */
     public void setSelectedRecipe(Recipe recipe) {
 
         String ingredients = "";
@@ -63,7 +80,9 @@ public class CenterPanel extends JPanel {
     }
 
 
-
+    /**
+     * Populuates the left panel.
+     */
     public void LeftPanel(){
         leftPanel = new JPanel(new BorderLayout());
         leftPanel.setBorder(BorderFactory.createTitledBorder("Sök Resultat"));
@@ -76,6 +95,9 @@ public class CenterPanel extends JPanel {
         searchList.addListSelectionListener(new ListListener());
     }
 
+    /**
+     * Populates the right panel.
+     */
     public void RightPanel(){
         rightPanel = new JPanel(new BorderLayout());
         rightPanel.setBorder(BorderFactory.createTitledBorder("Recept"));
@@ -89,6 +111,10 @@ public class CenterPanel extends JPanel {
 
     }
 
+    /**
+     * Listener class that listens to the list of Recipe-objects.
+     * @author Andreas Månsson, Gustaf Hermansson
+     */
     private class ListListener implements ListSelectionListener {
         public void valueChanged(ListSelectionEvent e) {
 
