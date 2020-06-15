@@ -23,7 +23,7 @@ public class NorthPanel extends JPanel {
 
     private JPanel buttonPanel;
     private JTabbedPane rightPanel,leftPanel;
-    private JButton btnSearch,btnAdd, btnDelete,btnClearAll,btnRecipeSearch;
+    private JButton btnSearch,btnAdd, btnDelete,btnClearAll,btnRecipeSearch,btnSave;
     private JCheckBox cbSaved;
     private JComboBox cbSearch, cbRecipe;
     private JList listIngredients,listSaved;
@@ -153,7 +153,7 @@ public class NorthPanel extends JPanel {
 
     public JComponent makeLeftPanel2(){
         JPanel panel = new JPanel(false);
-        panel.setLayout(new FlowLayout());
+        panel.setLayout(new BorderLayout());
         panel.setBorder(BorderFactory.createTitledBorder("Mitt Skafferi"));
 
         listSaved = new JList();
@@ -162,7 +162,10 @@ public class NorthPanel extends JPanel {
         listSaved.setPreferredSize(new Dimension(250, 250));
         scrollList = new JScrollPane(listSaved, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        panel.add(scrollList);
+        panel.add(scrollList,BorderLayout.CENTER);
+
+        btnSave = new JButton("Spara Skafferi");
+        panel.add(btnSave,BorderLayout.SOUTH);
 
         return panel;
     }
