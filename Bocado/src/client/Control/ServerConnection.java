@@ -98,6 +98,4 @@ public class ServerConnection {
 
         return null;
     }
-
-
 }

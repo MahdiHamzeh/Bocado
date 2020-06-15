@@ -2,6 +2,8 @@ package server.controller;
 
 import server.network.*;
 import server.recipeHandler.*;
+import server.userHandler.User;
+import server.userHandler.UserDatabase;
 
 import java.util.ArrayList;
 
@@ -16,10 +18,14 @@ public class Controller {
 
     private RecipeBook recipeBook;
     private ClientReceiver clientReceiver;
+    private UserDatabase userDatabase;
+    private UserNetwork userNetwork;
 
     public Controller() {
         recipeBook = new RecipeBook();
         clientReceiver = new ClientReceiver(this, 2500);
+        userDatabase = new UserDatabase();
+        userNetwork = new UserNetwork(this, 3000);
     }
 
     /**
@@ -42,5 +48,14 @@ public class Controller {
     public Recipe getRecipeSearch(String search) {
 
         return recipeBook.recipeSearch(search);
+    }
+
+    public User getUser(String[] userData) {
+        User user = userDatabase.getUser(userData);
+        return user;
+    }
+
+    public void updateUser(String[] userData) {
+        userDatabase.updateUser(userData);
     }
 }

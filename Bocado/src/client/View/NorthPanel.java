@@ -18,6 +18,7 @@ import javax.swing.JTabbedPane;
 public class NorthPanel extends JPanel {
 
     private DefaultListModel dm = new DefaultListModel();
+    private DefaultListModel personalIngredients = new DefaultListModel();
     private Controller controller;
 
     private JPanel buttonPanel;
@@ -52,9 +53,20 @@ public class NorthPanel extends JPanel {
      */
     public String getListIngredients(){
         String str="ING,";
-        for(int i = 0; i< listIngredients.getModel().getSize(); i++){
-            str += listIngredients.getModel().getElementAt(i) + ",";
-        } return str;
+        if(cbSaved.isSelected() == true) {
+            for(int i = 0; i< listIngredients.getModel().getSize(); i++){
+                str += listIngredients.getModel().getElementAt(i) + ",";
+            }
+            for(int i = 0; i<listSaved.getModel().getSize(); i++) {
+                str += listSaved.getModel().getElementAt(i) + ",";
+            }
+        }
+        else {
+            for(int i = 0; i< listIngredients.getModel().getSize(); i++){
+                str += listIngredients.getModel().getElementAt(i) + ",";
+            }
+        }
+        return str;
     }
 
     /**
@@ -77,10 +89,10 @@ public class NorthPanel extends JPanel {
     /**
      * Deletes an ingredient from the list of selected ingredients.
      */
-    public void deleteIngredientsText(){
+    public void deleteIngredientsText(DefaultListModel dlm, JList list){
         try {
-            int index = listIngredients.getSelectedIndex();
-            dm.removeElementAt(index);
+            int index = list.getSelectedIndex();
+            dlm.removeElementAt(index);
         } catch(ArrayIndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(null,"Markera den ingrediens du vill ta bort");
         }
@@ -99,7 +111,7 @@ public class NorthPanel extends JPanel {
      * @return a boolean of the result of the check.
      */
     public boolean isIngredientsEmpty() {
-        if(listIngredients.getModel().getSize() == 0) {
+        if(listIngredients.getModel().getSize() == 0 && listSaved.getModel().getSize() == 0) {
             return true;
         }
         else {
@@ -125,11 +137,12 @@ public class NorthPanel extends JPanel {
     public JComponent makeLeftPanel(){
         JPanel panel = new JPanel(false);
         panel.setLayout(new FlowLayout());
-        panel.setBorder(BorderFactory.createTitledBorder("Sök"));
+        panel.setBorder(BorderFactory.createTitledBorder("Ingredienssök"));
 
         listIngredients = new JList();
         listIngredients.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         listIngredients.setSelectedIndex(0);
+        listIngredients.setPreferredSize(new Dimension(250, 250));
         scrollList = new JScrollPane(listIngredients, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         panel.add(scrollList);
@@ -141,11 +154,12 @@ public class NorthPanel extends JPanel {
     public JComponent makeLeftPanel2(){
         JPanel panel = new JPanel(false);
         panel.setLayout(new FlowLayout());
-        panel.setBorder(BorderFactory.createTitledBorder("Sök"));
+        panel.setBorder(BorderFactory.createTitledBorder("Mitt Skafferi"));
 
         listSaved = new JList();
         listSaved.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         listSaved.setSelectedIndex(0);
+        listSaved.setPreferredSize(new Dimension(250, 250));
         scrollList = new JScrollPane(listSaved, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         panel.add(scrollList);
@@ -250,9 +264,17 @@ public class NorthPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             if  (e.getSource()== btnAdd){
-                listIngredients.setModel(dm);
-                dm.addElement(getIngredientsText());
-                clearIngredientsText();
+                if(leftPanel.getSelectedIndex() == 0) {
+                    listIngredients.setModel(dm);
+                    dm.addElement(getIngredientsText());
+                    clearIngredientsText();
+                }
+                else if(leftPanel.getSelectedIndex() == 1) {
+                    listSaved.setModel(personalIngredients);
+                    personalIngredients.addElement(getIngredientsText());
+                    clearIngredientsText();
+                }
+
                 if(isIngredientsEmpty() == true) {
                     btnSearch.setEnabled(false);
                 }
@@ -261,7 +283,14 @@ public class NorthPanel extends JPanel {
                 }
             }
             else if (e.getSource()== btnDelete){
-                deleteIngredientsText();
+
+                if(leftPanel.getSelectedIndex() == 0) {
+                    deleteIngredientsText(dm, listIngredients);
+                }
+                else if(leftPanel.getSelectedIndex() == 1) {
+                    deleteIngredientsText(personalIngredients, listSaved);
+                }
+
                 if(isIngredientsEmpty() == true) {
                     btnSearch.setEnabled(false);
                 }
