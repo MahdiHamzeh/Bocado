@@ -20,11 +20,12 @@ public class NorthPanel extends JPanel {
     private DefaultListModel dm = new DefaultListModel();
     private Controller controller;
 
-    private JPanel leftPanel,buttonPanel;
-    private JTabbedPane rightPanel;
+    private JPanel buttonPanel;
+    private JTabbedPane rightPanel,leftPanel;
     private JButton btnSearch,btnAdd, btnDelete,btnClearAll,btnRecipeSearch;
+    private JCheckBox cbSaved;
     private JComboBox cbSearch, cbRecipe;
-    private JList list;
+    private JList listIngredients,listSaved;
     private JScrollPane scrollList;
     private ButtonListener listener = new ButtonListener();
 
@@ -51,8 +52,8 @@ public class NorthPanel extends JPanel {
      */
     public String getListIngredients(){
         String str="ING,";
-        for(int i = 0; i<list.getModel().getSize();i++){
-            str += list.getModel().getElementAt(i) + ",";
+        for(int i = 0; i< listIngredients.getModel().getSize(); i++){
+            str += listIngredients.getModel().getElementAt(i) + ",";
         } return str;
     }
 
@@ -78,7 +79,7 @@ public class NorthPanel extends JPanel {
      */
     public void deleteIngredientsText(){
         try {
-            int index = list.getSelectedIndex();
+            int index = listIngredients.getSelectedIndex();
             dm.removeElementAt(index);
         } catch(ArrayIndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(null,"Markera den ingrediens du vill ta bort");
@@ -98,7 +99,7 @@ public class NorthPanel extends JPanel {
      * @return a boolean of the result of the check.
      */
     public boolean isIngredientsEmpty() {
-        if(list.getModel().getSize() == 0) {
+        if(listIngredients.getModel().getSize() == 0) {
             return true;
         }
         else {
@@ -109,17 +110,47 @@ public class NorthPanel extends JPanel {
     /**
      * Sets up the left panel.
      */
+
     public void leftPanel(){
-        leftPanel = new JPanel(new BorderLayout());
-        leftPanel.setBorder(BorderFactory.createTitledBorder("Ingredienser"));
+        leftPanel = new JTabbedPane();
+        JComponent panel1 = makeLeftPanel();
+        leftPanel.addTab("Ingredienser", panel1);
+        leftPanel.setMnemonicAt(0, KeyEvent.VK_1);
 
-        list = new JList();
-        list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        list.setSelectedIndex(0);
-        scrollList = new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        JComponent panel2 = makeLeftPanel2();
+        leftPanel.add("Mitt Skafferi", panel2);
+        leftPanel.setMnemonicAt(1, KeyEvent.VK_2);
+    }
 
-        leftPanel.add(scrollList);
+    public JComponent makeLeftPanel(){
+        JPanel panel = new JPanel(false);
+        panel.setLayout(new FlowLayout());
+        panel.setBorder(BorderFactory.createTitledBorder("Sök"));
 
+        listIngredients = new JList();
+        listIngredients.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        listIngredients.setSelectedIndex(0);
+        scrollList = new JScrollPane(listIngredients, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        panel.add(scrollList);
+
+        return panel;
+
+    }
+
+    public JComponent makeLeftPanel2(){
+        JPanel panel = new JPanel(false);
+        panel.setLayout(new FlowLayout());
+        panel.setBorder(BorderFactory.createTitledBorder("Sök"));
+
+        listSaved = new JList();
+        listSaved.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        listSaved.setSelectedIndex(0);
+        scrollList = new JScrollPane(listSaved, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        panel.add(scrollList);
+
+        return panel;
     }
 
     /**
@@ -128,11 +159,11 @@ public class NorthPanel extends JPanel {
     public void rightPanel() {
 
         rightPanel = new JTabbedPane();
-        JComponent panel1 = makePanel();
+        JComponent panel1 = makeRightPanel();
         rightPanel.addTab("Ingredienssök", panel1);
         rightPanel.setMnemonicAt(0, KeyEvent.VK_1);
 
-        JComponent panel2 = makePanel2();
+        JComponent panel2 = makeRightPanel2();
         rightPanel.add("Receptsök", panel2);
         rightPanel.setMnemonicAt(1, KeyEvent.VK_2);
 
@@ -142,7 +173,7 @@ public class NorthPanel extends JPanel {
      * Creates and returns a panel for the tabbed pane.
      * @return completed JPanel
      */
-    public JComponent makePanel() {
+    public JComponent makeRightPanel() {
 
         ArrayList<String> ingredients = getReadIngredients();
 
@@ -156,6 +187,11 @@ public class NorthPanel extends JPanel {
         cbSearch.setEditable(false);
 
         panel.add(cbSearch);
+
+        cbSaved = new JCheckBox("Sök med Skafferi");
+        cbSaved.addActionListener(listener);
+
+        panel.add(cbSaved);
 
         btnAdd = new JButton("Lägg Till");
         btnDelete = new JButton("Ta Bort");
@@ -183,7 +219,7 @@ public class NorthPanel extends JPanel {
      * Creates and returns a panel for the tabbed pane.
      * @return completed JPanel
      */
-    public JComponent makePanel2() {
+    public JComponent makeRightPanel2() {
 
         JPanel panel = new JPanel(false);
         panel.setLayout(new FlowLayout());
@@ -214,7 +250,7 @@ public class NorthPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             if  (e.getSource()== btnAdd){
-                list.setModel(dm);
+                listIngredients.setModel(dm);
                 dm.addElement(getIngredientsText());
                 clearIngredientsText();
                 if(isIngredientsEmpty() == true) {
