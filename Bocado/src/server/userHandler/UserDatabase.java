@@ -4,13 +4,20 @@ package server.userHandler;
 import java.io.*;
 import java.util.ArrayList;
 
-public class UserDatabase {
+public class UserDatabase implements Serializable {
 
     private ArrayList<User> userDatabase;
 
     public UserDatabase() {
         userDatabase = readUserDatabase();
         writeUserDatabase();
+
+        for(int i = 0; i<userDatabase.size(); i++) {
+            System.out.println(userDatabase.get(i).getName());
+            for(int j = 0; j<userDatabase.get(i).getSavedIngredients().size(); j++) {
+                System.out.println(userDatabase.get(i).getSavedIngredients().get(j));
+            }
+        }
     }
 
 
@@ -33,7 +40,7 @@ public class UserDatabase {
             if(userData[1].equals(userDatabase.get(i).getName())) {
                 ArrayList<String> updatedIngredients = new ArrayList<String>();
 
-                for(int j = 2; j<userData.length; i++) {
+                for(int j = 2; j<userData.length; j++) {
                     updatedIngredients.add(userData[j]);
 
                 }
@@ -45,6 +52,8 @@ public class UserDatabase {
 
         writeUserDatabase();
     }
+
+
 
     private ArrayList<User> readUserDatabase() {
         try(ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream("database/UserData.dat")))) {

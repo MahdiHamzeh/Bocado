@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JTabbedPane;
+import server.userHandler.User;
 
 /**
  * JPanel that handles inputs.
@@ -29,6 +30,9 @@ public class NorthPanel extends JPanel {
     private JList listIngredients,listSaved;
     private JScrollPane scrollList;
     private ButtonListener listener = new ButtonListener();
+
+    private String currentUser;
+
 
     public NorthPanel(Controller controller){
         this.controller=controller;
@@ -66,6 +70,15 @@ public class NorthPanel extends JPanel {
                 str += listIngredients.getModel().getElementAt(i) + ",";
             }
         }
+        return str;
+    }
+
+    public String getSavedIngredients() {
+        String str="UPD," + currentUser + ",";
+        for(int i = 0; i<listSaved.getModel().getSize(); i++) {
+            str += listSaved.getModel().getElementAt(i) + ",";
+        }
+        System.out.println(str);
         return str;
     }
 
@@ -143,6 +156,7 @@ public class NorthPanel extends JPanel {
         listIngredients.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         listIngredients.setSelectedIndex(0);
         listIngredients.setPreferredSize(new Dimension(250, 250));
+        listIngredients.setModel(dm);
         scrollList = new JScrollPane(listIngredients, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         panel.add(scrollList);
@@ -160,12 +174,14 @@ public class NorthPanel extends JPanel {
         listSaved.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         listSaved.setSelectedIndex(0);
         listSaved.setPreferredSize(new Dimension(250, 250));
+        listSaved.setModel(personalIngredients);
         scrollList = new JScrollPane(listSaved, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         panel.add(scrollList,BorderLayout.CENTER);
 
         btnSave = new JButton("Spara Skafferi");
         panel.add(btnSave,BorderLayout.SOUTH);
+        btnSave.addActionListener(listener);
 
         return panel;
     }
@@ -259,6 +275,14 @@ public class NorthPanel extends JPanel {
         return panel;
     }
 
+    public void setUser(User user) {
+        System.out.println(user.getName());
+        this.currentUser = user.getName();
+
+        personalIngredients.removeAllElements();
+        personalIngredients.addAll(user.getSavedIngredients());
+    }
+
     /**
      * Listener class that listens for button-presses, and handles them accordingly.
      */
@@ -268,12 +292,12 @@ public class NorthPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             if  (e.getSource()== btnAdd){
                 if(leftPanel.getSelectedIndex() == 0) {
-                    listIngredients.setModel(dm);
+                    //listIngredients.setModel(dm);
                     dm.addElement(getIngredientsText());
                     clearIngredientsText();
                 }
                 else if(leftPanel.getSelectedIndex() == 1) {
-                    listSaved.setModel(personalIngredients);
+                    //listSaved.setModel(personalIngredients);
                     personalIngredients.addElement(getIngredientsText());
                     clearIngredientsText();
                 }
@@ -324,6 +348,10 @@ public class NorthPanel extends JPanel {
                 String str = "REC,";
                 str += cbRecipe.getSelectedItem().toString() + ",";
                 controller.recipeSearch(str);
+            }
+            else if (e.getSource() == btnSave) {
+                String str = getSavedIngredients();
+                controller.updateUser(str);
             }
 
         }

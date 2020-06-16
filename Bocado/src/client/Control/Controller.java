@@ -1,11 +1,15 @@
 package client.Control;
 import client.View.CenterPanel;
 import client.View.MainFrame;
+import client.View.NorthPanel;
 import server.recipeHandler.Recipe;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import server.userHandler.User;
+
+import javax.swing.*;
 
 /**
  * Handles communication between the view and network-class.
@@ -20,6 +24,8 @@ public class Controller {
 
     public Controller() {
         mainframe=new MainFrame(this);
+        String username = "LOG," + JOptionPane.showInputDialog("Skriv in ditt användarnamn: ") + ",";
+        getUser(username);
     }
 
     /**
@@ -69,6 +75,19 @@ public class Controller {
             System.out.println("An error occurred.");
             e.printStackTrace();
         } return ingredients;
+    }
+
+    public void getUser(String username) {
+        UserGetter userGetter = new UserGetter("localhost", 3000);
+
+        NorthPanel np = mainframe.getNortherPanel();
+
+        np.setUser(userGetter.getUser(username));
+    }
+
+    public void updateUser(String userData) {
+        UserUpdater userUpdater = new UserUpdater("localhost", 3000);
+        userUpdater.sendUser(userData);
     }
 
 }
