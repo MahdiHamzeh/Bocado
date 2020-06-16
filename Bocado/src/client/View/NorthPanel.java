@@ -73,6 +73,10 @@ public class NorthPanel extends JPanel {
         return str;
     }
 
+    /**
+     * Returns a formatted String with all currently saved ingredients.
+     * @return formatted String.
+     */
     public String getSavedIngredients() {
         String str="UPD," + currentUser + ",";
         for(int i = 0; i<listSaved.getModel().getSize(); i++) {
@@ -147,6 +151,10 @@ public class NorthPanel extends JPanel {
         leftPanel.setMnemonicAt(1, KeyEvent.VK_2);
     }
 
+    /**
+     * Makes one of the tabbed panes for the left panel.
+     * @return the completed panel.
+     */
     public JComponent makeLeftPanel(){
         JPanel panel = new JPanel(false);
         panel.setLayout(new FlowLayout());
@@ -165,6 +173,10 @@ public class NorthPanel extends JPanel {
 
     }
 
+    /**
+     * Makes one of the tabbed panes for the left panel.
+     * @return the completed panel.
+     */
     public JComponent makeLeftPanel2(){
         JPanel panel = new JPanel(false);
         panel.setLayout(new BorderLayout());
@@ -275,6 +287,10 @@ public class NorthPanel extends JPanel {
         return panel;
     }
 
+    /**
+     * Recieves a User-object and updates the saved ingredients in the view.
+     * @param user User-object that is logged in.
+     */
     public void setUser(User user) {
         System.out.println(user.getName());
         this.currentUser = user.getName();

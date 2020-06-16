@@ -77,6 +77,11 @@ public class Controller {
         } return ingredients;
     }
 
+    /**
+     * Creates a UserGetter-object that looks up the user matching the parameter,
+     * then uses the resulting User-object to update information in the view.
+     * @param username String containing username
+     */
     public void getUser(String username) {
         UserGetter userGetter = new UserGetter("localhost", 3000);
 
@@ -85,6 +90,10 @@ public class Controller {
         np.setUser(userGetter.getUser(username));
     }
 
+    /**
+     * Sends data to the server to update a User-object.
+     * @param userData formatted String containing user data.
+     */
     public void updateUser(String userData) {
         UserUpdater userUpdater = new UserUpdater("localhost", 3000);
         userUpdater.sendUser(userData);

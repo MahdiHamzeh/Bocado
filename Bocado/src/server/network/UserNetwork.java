@@ -7,6 +7,12 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * Handles the sending and receiving user-information from the server side.
+ * @version 1.0
+ * @author Andreas Månsson, Gustaf Hermansson, Mahdi Hamzeh
+ *
+ */
 
 public class UserNetwork {
 
@@ -25,6 +31,9 @@ public class UserNetwork {
         }
     }
 
+    /**
+     * Inner class that listens for User-requests from the client.
+     */
     private class UserHandler extends Thread {
 
         public void run() {

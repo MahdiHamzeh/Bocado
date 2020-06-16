@@ -50,11 +50,20 @@ public class Controller {
         return recipeBook.recipeSearch(search);
     }
 
+    /**
+     * Gets a user-object from UserDatabase based on the userData-parameter.
+     * @param userData ínfo about the User-object.
+     * @return User-object that matches the userData
+     */
     public User getUser(String[] userData) {
         User user = userDatabase.getUser(userData);
         return user;
     }
 
+    /**
+     * Updates a User-object in the UserDatabase based on the userData-parameter.
+     * @param userData information about which object to update, and what to update it with.
+     */
     public void updateUser(String[] userData) {
         userDatabase.updateUser(userData);
     }

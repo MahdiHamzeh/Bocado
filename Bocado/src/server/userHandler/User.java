@@ -3,6 +3,11 @@ package server.userHandler;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Class that represents a user and their saved ingredients.
+ * @version 1.0
+ * @author Andreas Månsson, Gustaf Hermansson, Mahdi Hamzeh
+ */
 public class User implements Serializable {
 
     private String name;

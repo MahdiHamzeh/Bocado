@@ -1,12 +1,18 @@
 package client.Control;
 
-import server.userHandler.User;
 
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.Socket;
+
+/**
+ * Sends updated user-info to the server.
+ * @version 1.0
+ * @author Andreas Månsson, Gustaf Hermansson, Mahdi Hamzeh
+ *
+ */
+
 
 public class UserUpdater {
 
@@ -20,16 +26,29 @@ public class UserUpdater {
         this.port = port;
     }
 
+
+    /**
+     * Connects to the server.
+     * @throws IOException
+     */
     public void connect() throws IOException {
         socket = new Socket(ip, port);
         dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
         System.out.println("Connected to server on IP " + socket.getInetAddress() + " and port " + socket.getLocalPort());
     }
 
+    /**
+     * Disconnects from the server.
+     * @throws IOException
+     */
     public void disconnect() throws IOException {
         socket.close();
     }
 
+    /**
+     * Sends a formatted String to the server with info about the user.
+     * @param userData formatted String containing user data.
+     */
     public void sendUser(String userData) {
 
         try {

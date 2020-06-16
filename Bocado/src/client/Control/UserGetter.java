@@ -8,6 +8,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+/**
+ * Recieves user-objects from the server on login.
+ * @version 1.0
+ * @author Andreas Månsson, Gustaf Hermansson, Mahdi Hamzeh
+ *
+ */
+
 public class UserGetter {
 
     private String ip;
@@ -21,6 +28,10 @@ public class UserGetter {
         this.port = port;
     }
 
+    /**
+     * Connects to the server.
+     * @throws IOException
+     */
     public void connect() throws IOException {
         socket = new Socket(ip, port);
         dos = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
@@ -28,9 +39,19 @@ public class UserGetter {
         System.out.println("Connected to server on IP " + socket.getInetAddress() + " and port " + socket.getLocalPort());
     }
 
+    /**
+     * Disconnects from the server.
+     * @throws IOException
+     */
     public void disconnect() throws IOException {
         socket.close();
     }
+
+    /**
+     * Sends a formatted String to the server containing a username, and gets back a user-object.
+     * @param username formatted String containing username.
+     * @return user-object matching the username.
+     */
     public User getUser(String username) {
 
         try {
